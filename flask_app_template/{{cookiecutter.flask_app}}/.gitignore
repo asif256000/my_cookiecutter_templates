@@ -1,0 +1,16 @@
+# Virtual Environment Files
+venv
+
+# Environment variables
+.env
+database.conf
+.flaskenv
+
+# pycache files
+__pycache__
+*/__pycache__
+*.pyc
+
+# Misc
+.idea
+.vscode

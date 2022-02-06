@@ -1,0 +1,31 @@
+# MySQL Database container
+docker run --name mysql_cont -d --env-file database.conf mysql/mysql-server:latest
+
+# Build Docker Image
+docker build -t flask_test:latest .
+
+# Web Application container
+docker run --name microblog_test -d -p 8000:5000 --rm --env-file .env --link mysql_cont:mysqldb flask_test:latest
+
+# Other commands
+# List all docker images
+docker images
+# List all docker containers
+docker ps
+# Stop a specific docker container
+docker stop <container id>
+# Delete docker container
+docker rm <container id> # Not giving container id deletes all stopped containers
+# Delete docker image
+docker rmi <image id or name:tag>
+# List all environment variables for a docker container
+docker exec <container name> env
+
+# Docker Compose commands
+docker-compose up -d
+docker-compose down
+
+# Removing all docker containers, images and volumes respectively
+docker rm -vf $(docker ps -aq)
+docker rmi -f $(docker images -aq)
+docker volume rm $(docker volume ls -q)
