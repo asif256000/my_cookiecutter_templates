@@ -18,21 +18,22 @@ if [[ $# -ne 1 ]]; then
 fi
 
 PY="${PY:-python}"
+VENVPY="${VENVPY:-./venv/Scripts.python.exe}"
 
 case "$1" in
 dev)
     "$PY" -m venv venv
-    "$PY" -m pip install -r requirements.txt
-    "$PY" -m pip install -e .
+    "$VENVPY" -m pip install -r requirements.txt
+    "$VENVPY" -m pip install -e .
     ;;
 tar)
-    "$PY" setup.py sdist
+    "$VENVPY" setup.py sdist
     ;;
 wheel)
-    "$PY" setup.py bdist_wheel
+    "$VENVPY" setup.py bdist_wheel
     ;;
 test)
-    "$PY" -m pytest -v tests
+    "$VENVPY" -m pytest -v tests
     ;;
 *)
     echo
