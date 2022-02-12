@@ -17,23 +17,27 @@ if [[ $# -ne 1 ]]; then
     exit 2
 fi
 
+# TODO: Check which type of variables are reqd here: ENV{}, SHELL(), or NORMAL.
 PY="${PY:-python}"
-VENVPY="${VENVPY:-./venv/Scripts.python.exe}"
+CURDIR="$(pwd)/"
+SCRDIR="${CURDIR}/venv/Scripts/"
+PYVENV="${SCRDIR}/python"
 
 case "$1" in
-dev)
+init)
     "$PY" -m venv venv
-    "$VENVPY" -m pip install -r requirements.txt
-    "$VENVPY" -m pip install -e .
+    source "$SCRDIR"/activate
+    "$PYVENV" -m pip install -r requirements.txt
+    "$PYVENV" -m pip install -e .
     ;;
 tar)
-    "$VENVPY" setup.py sdist
+    "$PYVENV" setup.py sdist
     ;;
 wheel)
-    "$VENVPY" setup.py bdist_wheel
+    "$PYVENV" setup.py bdist_wheel
     ;;
 test)
-    "$VENVPY" -m pytest -v tests
+    "$PYVENV" -m pytest -v tests
     ;;
 *)
     echo

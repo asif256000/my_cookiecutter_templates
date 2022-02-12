@@ -1,7 +1,7 @@
 from codecs import open
 from os import path
 
-from setuptools import find_namespace_packages, setup
+from setuptools import setup
 
 # TODO: Check how setup works and tweak values..
 
@@ -15,8 +15,8 @@ with open(path.join(HERE, "README.md"), encoding="utf-8") as f:
 setup(
     name="{{cookiecutter.python_app}}",
     version="0.1.0",
-    author="Asif",
-    author_email="asif256000@gmail.com",
+    author="{{cookiecutter.author_name}}",
+    author_email="{{cookiecutter.author_email_id}}",
     description="{{cookiecutter.project_description}}",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -38,7 +38,10 @@ setup(
     python_version=">=3.7",
     install_requires=[
         # Add all packages required in requirements.txt here
-        "pytest"
+        "pytest",
+        "sphinx",
+        "recommonmark",
+        "sphinx_rtd_theme",
     ],
     entry_points={
         "console_scripts": [
